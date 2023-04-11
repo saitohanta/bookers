@@ -1,32 +1,36 @@
 <h1>Books</h1>
 
-<% @books.each do |book| %>
+
 
 <table>
     <thead>
         <tr>
             <th>Title</th>
-            <th>Body</th>
+            <th class="line">Body</th>
             <th colspan="3"></th>
         </tr>
     </thead>
     
     <tbody>
+        <% @books.each do |book| %>
         <tr>
             <td><%= book.title %></td>
             <td><%= book.body %></td>
             <td>
-                <%= link_to "show", book_path(book.id) %>
-                <%= link_to "edit", edit_book_path(book.id) %>
+                <div class="link">
+                <%= link_to "Show", book_path(book.id) %>
+                <%= link_to "Edit", edit_book_path(book.id) %>
                 <%= link_to "Destroy",book_path(book.id), method: :delete, "data-confirm" => "Are you sure？" %>
+                </div>
             </td>
         </tr>
+        <% end %>
     </tbody>
 </table>
 
 
 
-<% end %>
+
 
 
 
@@ -44,13 +48,15 @@
 
 <%= form_with model: Book.new do |f| %>
 
-<h6>Title</h6>
+<h6 class="title">Title</h6>
 <%= f.text_field :title %>
 
-<h6>Body</h6>
+<h6 class="body">Body</h6>
 <%= f.text_area :body %>
 
+<div class="submit">
 <%= f.submit 'Create Book' %>
+</div>
 <% end %>
 
 
